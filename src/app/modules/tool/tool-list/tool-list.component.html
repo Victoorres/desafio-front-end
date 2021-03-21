@@ -1,8 +1,8 @@
     <div class="container">
         <header id="app-header" class="app-header" style="padding-top: 6%;">  
           <div class="header-content">
-            <div id="small-toolbar" class="app-toolbar" style="padding-left: 3%;">
-                <div class="row ">
+            <div id="small-toolbar" class="app-toolbar" style="padding-left: 2%;">
+                <div class="row">
                     <div class="col-md-12">
                         <mat-card-title style="font-size: 70px;">{{project.title}}<br></mat-card-title>
                     </div>
@@ -14,9 +14,17 @@
           </div>
         </header>
         
-        <div class="card">
-            
-            <div class="card-title">Cu mei vide viris gloriatur, at populo eripuit sit</div>
-                    
+        <div class="card" *ngFor="let tool of tools">
+            <div style="position: absolute; padding-left: 90%;">
+                <button type="button" class="close" aria-label="Close" style="width: 80px;" (click)="openDialog()">
+                    <span aria-hidden="true" style="position: absolute;padding-top: 0.3%;">&times;</span>
+                    <label style="padding-left: 30%; font-size: 15px;cursor: pointer;color: black;">remove</label>
+                </button>
+              </div>
+            <div class="card-title">{{tool.title}}</div>
+            <div class="card-subtitle">{{tool.description}}</div>
+            <div class="row horizontal" style="padding-top: 2%;">
+                <div class="card-subtitle" *ngFor="let tag of tool.tags"><b>#{{tag}}</b></div>
+            </div>
         </div>
     </div>

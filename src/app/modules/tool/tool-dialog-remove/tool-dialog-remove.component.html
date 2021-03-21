@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>
+  <b>
+    <span aria-hidden="true">&times;</span>
+  </b>
+  <label style="padding-left: 5%;">{{dialog.title}}</label>
+</h1>
+
+<p>{{dialog.subtitle}}</p>
+
+<div mat-dialog-actions class="float-right">
+  <button mat-button (click)="cancel()">{{dialog.option.no}}</button>
+  <button mat-button (click)="remove()">{{dialog.option.yes}}</button>
+</div>

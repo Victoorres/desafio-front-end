@@ -1,3 +1,6 @@
+import { ToolDialogRemoveComponent } from './../tool-dialog-remove/tool-dialog-remove.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Tool } from './../../../class/tool';
 import { ToolService } from './../tool.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 export class ToolListComponent implements OnInit {
 
   private _projectStructure: any;
+  public tools : Tool[] = [];
+  public tag: string = null;
+  public animal: string;
+  public name: string;
 
   constructor(
-    private toolService: ToolService
+    private toolService: ToolService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -22,9 +30,18 @@ export class ToolListComponent implements OnInit {
     }
 
     this.toolService.findToolByTag("").subscribe(response=>{
-      console.log(response);
-      
+      this.tools = response;
     })
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ToolDialogRemoveComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   public get project(): any {
@@ -34,5 +51,4 @@ export class ToolListComponent implements OnInit {
   public set project(value: any) {
     this._projectStructure = value;
   }
-
 }

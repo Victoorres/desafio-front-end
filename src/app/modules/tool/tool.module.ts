@@ -6,15 +6,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ToolService } from './tool.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ToolDialogRemoveComponent } from './tool-dialog-remove/tool-dialog-remove.component';
 
 @NgModule({
-  declarations: [ ToolListComponent ],
+  declarations: [ ToolListComponent, ToolDialogRemoveComponent ],
   imports: [
     CommonModule,
     ToolRoutingModule,
     MatCardModule,
-    MatIconModule,
-    MatInputModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     ToolService
