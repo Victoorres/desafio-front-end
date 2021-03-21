@@ -8,6 +8,7 @@ import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/a
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { Tool } from 'src/app/class/tool';
 export interface DialogData {
   id: number;
 }
@@ -40,6 +41,7 @@ export class ToolDialogAddComponent implements OnInit {
     public dialog: MatDialog,
     protected builder: FormBuilder,
     public dialogRef: MatDialogRef<ToolDialogAddComponent>,
+    private _snackBar: MatSnackBar
 
 ) {  }
 
@@ -96,9 +98,18 @@ ngOnInit(){
     this.dialogRef.close();
   }
 
-  addTool(tagForm: FormGroup): void{
+  addTool(tagForm: Tool): void{
+    this.toolService.save(tagForm).subscribe();
+    this.openSnackBar("Created", "OK")
+    setTimeout(() => {
+      this.dialogRef.close();
+    }, 400);
+  }
 
-    console.log(tagForm);
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   public get dialogAdd(): any {

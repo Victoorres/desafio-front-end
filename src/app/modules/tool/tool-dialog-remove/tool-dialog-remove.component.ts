@@ -51,10 +51,10 @@ export class ToolDialogRemoveComponent implements OnInit {
 
   remove(): void{
     this.toolService.deleteTool(this.data.id).subscribe();
-    this.openSnackBar("SUCCESS", "X")
+    this.openSnackBar("Removed", "OK")
     setTimeout(() => {
       this.dialogRef.close();
-    }, 1000);
+    }, 400);
   }
 
   openSnackBar(message: string, action: string) {
