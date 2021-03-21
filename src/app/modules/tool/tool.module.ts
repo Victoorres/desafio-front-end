@@ -8,6 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToolDialogRemoveComponent } from './tool-dialog-remove/tool-dialog-remove.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [ ToolListComponent, ToolDialogRemoveComponent ],
@@ -17,7 +20,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatInputModule,
+    MatIconModule,
+    MatCheckboxModule
+  
   ],
   providers: [
     ToolService

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Tool } from './../../../class/tool';
 import { ToolService } from './../tool.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-tool-list',
@@ -19,17 +20,16 @@ export class ToolListComponent implements OnInit {
 
   constructor(
     private toolService: ToolService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
 
     this.project = {
        title: 'VUTTR',
-       subtitle: 'Very Useful Tools to Remember'
+       subtitle: 'Very Useful Tools to Remember',
+       checkbox: 'search in tags only!'
     }
-
-    this.load();
     
     this.findTools();
   }
@@ -38,11 +38,6 @@ export class ToolListComponent implements OnInit {
     this.toolService.findToolByTag("").subscribe(response=>{
       this.tools = response;
     }) 
-  }
-
-  load() {
-    //Session storage salva os dados como string
-    
   }
 
   openDialog(toolId: number): void {
@@ -59,5 +54,4 @@ export class ToolListComponent implements OnInit {
   public set project(value: any) {
     this._projectStructure = value;
   }
-
 }
