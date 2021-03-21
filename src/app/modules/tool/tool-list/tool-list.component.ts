@@ -4,6 +4,7 @@ import { Tool } from './../../../class/tool';
 import { ToolService } from './../tool.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ToolDialogAddComponent } from '../tool-dialog-add/tool-dialog-add.component';
 
 @Component({
   selector: 'app-tool-list',
@@ -12,7 +13,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ToolListComponent implements OnInit {
 
-  private _projectStructure: any;
+  private _dialogRemoveStructure: any;
   public tools : Tool[] = [];
   public tag: string = null;
   public animal: string;
@@ -25,7 +26,7 @@ export class ToolListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.project = {
+    this.dialogRemove = {
        title: 'VUTTR',
        subtitle: 'Very Useful Tools to Remember',
        checkbox: 'search in tags only!'
@@ -47,11 +48,17 @@ export class ToolListComponent implements OnInit {
     });
   }
 
-  public get project(): any {
-    return this._projectStructure;
+  openAdd(): void {
+    const dialogRef = this.dialog.open(ToolDialogAddComponent, {
+      width: '550px'
+      });
   }
 
-  public set project(value: any) {
-    this._projectStructure = value;
+  public get dialogRemove(): any {
+    return this._dialogRemoveStructure;
+  }
+
+  public set dialogRemove(value: any) {
+    this._dialogRemoveStructure = value;
   }
 }

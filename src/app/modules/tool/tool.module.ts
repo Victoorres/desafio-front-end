@@ -11,9 +11,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ToolDialogAddComponent } from './tool-dialog-add/tool-dialog-add.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ ToolListComponent, ToolDialogRemoveComponent ],
+  declarations: [ ToolListComponent, ToolDialogRemoveComponent, ToolDialogAddComponent ],
   imports: [
     CommonModule,
     ToolRoutingModule,
@@ -23,8 +26,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSnackBarModule,
     MatInputModule,
     MatIconModule,
-    MatCheckboxModule
-  
+    MatCheckboxModule,
+    MatChipsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ToolService

@@ -16,7 +16,7 @@ export interface DialogData {
 
 export class ToolDialogRemoveComponent implements OnInit {
 
-  private _dialogStructure: any;
+  private _dialogRemoveStructure: any;
 
   constructor(
     public dialogRef: MatDialogRef<ToolDialogRemoveComponent>,
@@ -27,7 +27,7 @@ export class ToolDialogRemoveComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dialog = {
+    this.dialogRemove = {
       title: 'Remove tool',
       subtitle: 'Are you sure want to remove hotel?',
       option: {
@@ -37,12 +37,12 @@ export class ToolDialogRemoveComponent implements OnInit {
    }
   }
   
-  public get dialog(): any {
-    return this._dialogStructure;
+  public get dialogRemove(): any {
+    return this._dialogRemoveStructure;
   }
 
-  public set dialog(value: any) {
-    this._dialogStructure = value;
+  public set dialogRemove(value: any) {
+    this._dialogRemoveStructure = value;
   }
 
   cancel(): void {

@@ -2,12 +2,12 @@
   <b>
     <span aria-hidden="true">&times;</span>
   </b>
-  <label style="padding-left: 5%;">{{dialog.title}}</label>
+  <label style="padding-left: 5%;">{{dialogRemove.title}}</label>
 </h1>
 
-<p>{{dialog.subtitle}}</p>
+<p>{{dialogRemove.subtitle}}</p>
 
 <div mat-dialog-actions class="float-right">
-  <button mat-button (click)="cancel()">{{dialog.option.no}}</button>
-  <button mat-button (click)="remove()">{{dialog.option.yes}}</button>
+  <button mat-button (click)="cancel()">{{dialogRemove.option.no}}</button>
+  <button mat-button (click)="remove()">{{dialogRemove.option.yes}}</button>
 </div>
