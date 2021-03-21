@@ -1,0 +1,22 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { environment } from './../../../environments/environment';
+import { Observable } from 'rxjs/Observable';
+
+import { Tool } from './../../class/tool';
+
+@Injectable()
+export class ToolService {
+  protected url = `${environment.api.url}/tools`;
+
+  constructor(public http: HttpClient) {}
+
+  findToolByTag(tag: string): Observable<Tool[]> {
+    return this.http.get<Tool[]>(`${this.url}?tag=${tag}`);
+  }
+
+  findToolById(id: number): Observable<Tool> {
+    return this.http.get<Tool>(`${this.url}/`+ id);
+  }
+}

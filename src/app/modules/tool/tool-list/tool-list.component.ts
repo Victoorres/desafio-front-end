@@ -1,3 +1,4 @@
+import { ToolService } from './../tool.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolListComponent implements OnInit {
 
-  constructor() { }
+  private _projectStructure: any;
 
-  ngOnInit(): void {
+  constructor(
+    private toolService: ToolService
+  ) { }
+
+  ngOnInit() {
+
+    this.project = {
+       title: 'VUTTR',
+       subtitle: 'Very Useful Tools to Remember'
+    }
+
+    this.toolService.findToolByTag("").subscribe(response=>{
+      console.log(response);
+      
+    })
+  }
+
+  public get project(): any {
+    return this._projectStructure;
+  }
+
+  public set project(value: any) {
+    this._projectStructure = value;
   }
 
 }
