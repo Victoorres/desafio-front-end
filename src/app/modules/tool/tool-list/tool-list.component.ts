@@ -34,13 +34,10 @@ export class ToolListComponent implements OnInit {
     })
   }
 
-  openDialog(): void {
+  openDialog(toolId: number): void {
     const dialogRef = this.dialog.open(ToolDialogRemoveComponent, {
       width: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      data: {id: toolId}
     });
   }
 

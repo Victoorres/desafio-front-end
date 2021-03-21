@@ -17,6 +17,10 @@ export class ToolService {
   }
 
   findToolById(id: number): Observable<Tool> {
-    return this.http.get<Tool>(`${this.url}/`+ id);
+    return this.http.get<Tool>(`${this.url}/${id}`);
+  }
+
+  deleteTool(id: number): Observable<Tool> {
+    return this.http.delete<Tool>(`${this.url}/${id}`);
   }
 }

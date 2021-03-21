@@ -1,18 +1,26 @@
 import { ToolService } from './../tool.service';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Input, OnInit, Inject } from '@angular/core';
+
+export interface DialogData {
+  id: number;
+}
 
 @Component({
   selector: 'app-tool-dialog-remove',
   templateUrl: './tool-dialog-remove.component.html',
   styleUrls: ['./tool-dialog-remove.component.css']
 })
+
+
 export class ToolDialogRemoveComponent implements OnInit {
+  @Input() toolId: number;
 
   private _dialogStructure: any;
 
   constructor(
     public dialogRef: MatDialogRef<ToolDialogRemoveComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public toolService: ToolService
   ) { }
 
@@ -27,7 +35,6 @@ export class ToolDialogRemoveComponent implements OnInit {
       }
    }
   }
-
   
   public get dialog(): any {
     return this._dialogStructure;
@@ -42,7 +49,7 @@ export class ToolDialogRemoveComponent implements OnInit {
   }
 
   remove(): void{
-    // this.toolService
+    this.toolService.deleteTool(this.data.id).subscribe();
   }
 
 }

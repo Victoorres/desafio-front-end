@@ -16,7 +16,8 @@
         
         <div class="card" *ngFor="let tool of tools">
             <div style="position: absolute; padding-left: 90%;">
-                <button type="button" class="close" aria-label="Close" style="width: 80px;" (click)="openDialog()">
+                <button type="button" class="close" aria-label="Close" style="width: 80px;" 
+                (click)="openDialog(tool.id)">
                     <span aria-hidden="true" style="position: absolute;padding-top: 0.3%;">&times;</span>
                     <label style="padding-left: 30%; font-size: 15px;cursor: pointer;color: black;">remove</label>
                 </button>
