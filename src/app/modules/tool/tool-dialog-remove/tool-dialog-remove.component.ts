@@ -1,6 +1,7 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToolService } from './../tool.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 
 export interface DialogData {
   id: number;
@@ -14,14 +15,14 @@ export interface DialogData {
 
 
 export class ToolDialogRemoveComponent implements OnInit {
-  @Input() toolId: number;
 
   private _dialogStructure: any;
 
   constructor(
     public dialogRef: MatDialogRef<ToolDialogRemoveComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public toolService: ToolService
+    public toolService: ToolService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -50,6 +51,16 @@ export class ToolDialogRemoveComponent implements OnInit {
 
   remove(): void{
     this.toolService.deleteTool(this.data.id).subscribe();
+    this.openSnackBar("SUCCESS", "X")
+    setTimeout(() => {
+      this.dialogRef.close();
+    }, 1000);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

@@ -29,9 +29,20 @@ export class ToolListComponent implements OnInit {
        subtitle: 'Very Useful Tools to Remember'
     }
 
+    this.load();
+    
+    this.findTools();
+  }
+  
+  findTools(){
     this.toolService.findToolByTag("").subscribe(response=>{
       this.tools = response;
-    })
+    }) 
+  }
+
+  load() {
+    //Session storage salva os dados como string
+    
   }
 
   openDialog(toolId: number): void {
@@ -48,4 +59,5 @@ export class ToolListComponent implements OnInit {
   public set project(value: any) {
     this._projectStructure = value;
   }
+
 }
