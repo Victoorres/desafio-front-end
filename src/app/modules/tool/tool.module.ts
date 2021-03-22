@@ -14,6 +14,7 @@ import {MatCheckboxDefaultOptions, MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIO
 import { ToolDialogAddComponent } from './tool-dialog-add/tool-dialog-add.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [ ToolListComponent, ToolDialogRemoveComponent, ToolDialogAddComponent ],
@@ -29,7 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatChipsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
+
   ],
   providers: [
     ToolService,

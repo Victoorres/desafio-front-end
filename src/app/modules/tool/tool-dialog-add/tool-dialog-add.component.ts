@@ -1,17 +1,11 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToolService } from '../tool.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import { Tool } from 'src/app/class/tool';
-export interface DialogData {
-  id: number;
-}
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, Inject, OnInit} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-tool-dialog-add',
@@ -21,27 +15,24 @@ export interface DialogData {
 
 
 export class ToolDialogAddComponent implements OnInit {
-
+  
   private _dialogAddStructure: any;
-  tagForm: FormGroup;
-
-
+  
   visible = true;
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl();
   tags: string[] = [];
-
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  tagForm: FormGroup;
 
   constructor( 
     private toolService: ToolService,
     public dialog: MatDialog,
     protected builder: FormBuilder,
     public dialogRef: MatDialogRef<ToolDialogAddComponent>,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    @Inject(DOCUMENT) private document: Document
 
 ) {  }
 
@@ -57,8 +48,8 @@ ngOnInit(){
  this.tagForm = this.builder.group(
   {
     id: null,
-    title: null,
-    link: null,
+    title: [null, Validators.required],
+    link: [null, Validators.required],
     description: null,
     tags: [
       this.tags
@@ -66,19 +57,16 @@ ngOnInit(){
   },
   {}
 );
-
 }
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || '').trim()) {
       this.tags.push(value.trim());
     }
 
-    // Reset the input value
     if (input) {
       input.value = '';
     }
@@ -98,17 +86,23 @@ ngOnInit(){
     this.dialogRef.close();
   }
 
-  addTool(tagForm: Tool): void{
-    this.toolService.save(tagForm).subscribe();
-    this.openSnackBar("Created", "OK")
-    setTimeout(() => {
-      this.dialogRef.close();
-    }, 400);
+  addTool(tagForm: FormGroup): void{
+    if(tagForm.valid){
+      this.toolService.save(tagForm.value).subscribe();
+      this.openSnackBar("Created", "")
+      setTimeout(() => {
+        this.dialogRef.close();
+        this.someMethode();
+      }, 1000);
+    }else{
+      this.openSnackBar("Form invalid", "OK")
+    }
   }
-
+  
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
+      panelClass: ['snackbar']
     });
   }
 
@@ -119,4 +113,9 @@ ngOnInit(){
   public set dialogAdd(value: any) {
     this._dialogAddStructure = value;
   }
+
+  someMethode(){
+    this.document.location.reload();
+  }
+
 }

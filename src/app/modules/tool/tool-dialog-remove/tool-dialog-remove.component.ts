@@ -1,7 +1,8 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToolService } from './../tool.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Component, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 export interface DialogData {
   id: number;
@@ -22,14 +23,15 @@ export class ToolDialogRemoveComponent implements OnInit {
     public dialogRef: MatDialogRef<ToolDialogRemoveComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public toolService: ToolService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    @Inject(DOCUMENT) private document: Document
+
   ) { }
 
   ngOnInit() {
-
     this.dialogRemove = {
       title: 'Remove tool',
-      subtitle: 'Are you sure want to remove hotel?',
+      subtitle: 'Are you sure you want to remove hotel?',
       option: {
         yes: 'Yes, remove',
         no: 'Cancel'
@@ -51,16 +53,22 @@ export class ToolDialogRemoveComponent implements OnInit {
 
   remove(): void{
     this.toolService.deleteTool(this.data.id).subscribe();
-    this.openSnackBar("Removed", "OK")
+    this.openSnackBar("Removed")
+  }
+  
+  openSnackBar(message: string) {
+    this._snackBar.open(message, null ,{
+      duration: 2000,
+      panelClass: ['snackbar'],
+      
+    });
     setTimeout(() => {
       this.dialogRef.close();
-    }, 400);
+      this.someMethode()
+    }, 1000);
   }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
+  
+  someMethode(){
+    this.document.location.reload();
   }
-
 }

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Tool } from './../../../class/tool';
 import { ToolService } from './../tool.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToolDialogAddComponent } from '../tool-dialog-add/tool-dialog-add.component';
 
 @Component({

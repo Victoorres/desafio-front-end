@@ -7,12 +7,12 @@
   
   <mat-form-field appearance="outline" class="col-md-12">
     <mat-label>Tool name</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="title">
+    <input matInput placeholder="Placeholder" formControlName="title" required>
   </mat-form-field>
 
   <mat-form-field appearance="outline"  class="col-md-12">
     <mat-label>Tool link</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="link">
+    <input matInput placeholder="Placeholder" formControlName="link" required>
   </mat-form-field>
 
   <mat-form-field appearance="outline"  class="col-md-12">
@@ -44,5 +44,7 @@
 
 <div mat-dialog-actions class="float-right">
   <button mat-button (click)="cancel()">{{dialogAdd.option.no}}</button>
-  <button mat-button (click)="addTool(tagForm.value)">{{dialogAdd.option.yes}}</button>
+  <button mat-button (click)="addTool(tagForm)" href="https://www.google.com/">
+    {{dialogAdd.option.yes}}
+  </button>
 </div>
