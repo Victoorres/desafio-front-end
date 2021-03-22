@@ -10,7 +10,7 @@ import { Tool } from './../../class/tool';
 export class ToolService {
   protected url = `${environment.api.url}/tools`;
 
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   findToolByTag(tag: string): Observable<Tool[]> {
     return this.http.get<Tool[]>(`${this.url}?tag=${tag}`);

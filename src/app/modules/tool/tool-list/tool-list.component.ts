@@ -14,7 +14,7 @@ import { ToolDialogAddComponent } from '../tool-dialog-add/tool-dialog-add.compo
 export class ToolListComponent implements OnInit {
 
   private _projectStructure: any;
-  public tools : Tool[] = [];
+  public tools: Tool[] = [];
   public tag: string = null;
   public animal: string;
   public name: string;
@@ -30,55 +30,55 @@ export class ToolListComponent implements OnInit {
   ngOnInit() {
 
     this.projectStructure = {
-       title: 'VUTTR',
-       subtitle: 'Very Useful Tools to Remember',
-       checkbox: 'search in tags only!'
+      title: 'VUTTR',
+      subtitle: 'Very Useful Tools to Remember',
+      checkbox: 'search in tags only!'
     }
-    
+
     this.findTools("");
 
     this.filter = this.builder.group({
       search: [null]
     })
   }
-  
-  findTools(tag: string){
-    this.toolService.findToolByTag(tag).subscribe(response=>{
+
+  findTools(tag: string) {
+    this.toolService.findToolByTag(tag).subscribe(response => {
       this.tools = response;
-    }) 
+    })
   }
 
   openDialog(toolId: number): void {
     const dialogRef = this.dialog.open(ToolDialogRemoveComponent, {
       width: '500px',
-      data: {id: toolId}
+      data: { id: toolId }
     });
   }
 
   openAdd(): void {
     const dialogRef = this.dialog.open(ToolDialogAddComponent, {
       width: '550px'
-      });
+    });
   }
 
   search(data: FormGroup): any {
-    if(this.checked){
+    if (this.checked) {
       this.findTools(data.value.search);
-    }else{
+    } else {
       this.tools = [];
       this.filterSearch(data.value.search);
     }
   }
-  
-  reset(){
+
+  reset() {
     (document.getElementById('search') as HTMLInputElement).value = null
     this.findTools("");
   }
 
-  filterSearch(data: string){
-    this.toolService.findToolByTitleLinkDescriptionTag(data).subscribe(response=>{
+  filterSearch(data: string) {
+    this.toolService.findToolByTitleLinkDescriptionTag(data).subscribe(response => {
       this.tools = response;
-    }) 
+    })
   }
 
   public get projectStructure(): any {

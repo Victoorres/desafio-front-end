@@ -36,9 +36,9 @@ export class ToolDialogRemoveComponent implements OnInit {
         yes: 'Yes, remove',
         no: 'Cancel'
       }
-   }
+    }
   }
-  
+
   public get dialogRemove(): any {
     return this._dialogRemoveStructure;
   }
@@ -51,24 +51,23 @@ export class ToolDialogRemoveComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  remove(): void{
+  remove(): void {
     this.toolService.deleteTool(this.data.id).subscribe();
     this.openSnackBar("Removed")
   }
-  
+
   openSnackBar(message: string) {
-    this._snackBar.open(message, null ,{
+    this._snackBar.open(message, null, {
       duration: 2000,
       panelClass: ['snackbar'],
-      
     });
     setTimeout(() => {
       this.dialogRef.close();
       this.someMethode()
     }, 1000);
   }
-  
-  someMethode(){
+
+  someMethode() {
     this.document.location.reload();
   }
 }
