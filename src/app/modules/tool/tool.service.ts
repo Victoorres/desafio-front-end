@@ -16,6 +16,10 @@ export class ToolService {
     return this.http.get<Tool[]>(`${this.url}?tag=${tag}`);
   }
 
+  findToolByTitleLinkDescriptionTag(data: string): Observable<Tool[]> {
+    return this.http.get<Tool[]>(`${this.url}/filter?data=${data}`);
+  }
+
   findToolById(id: number): Observable<Tool> {
     return this.http.get<Tool>(`${this.url}/${id}`);
   }

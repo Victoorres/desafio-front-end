@@ -10,10 +10,10 @@ import { ToolDialogRemoveComponent } from './tool-dialog-remove/tool-dialog-remo
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCheckboxDefaultOptions, MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material/checkbox';
 import { ToolDialogAddComponent } from './tool-dialog-add/tool-dialog-add.component';
 import {MatChipsModule} from '@angular/material/chips';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ ToolListComponent, ToolDialogRemoveComponent, ToolDialogAddComponent ],
@@ -28,10 +28,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatCheckboxModule,
     MatChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
-    ToolService
+    ToolService,
   ]
 })
 export class ToolModule { }

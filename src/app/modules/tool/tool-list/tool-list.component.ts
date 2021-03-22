@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Tool } from './../../../class/tool';
 import { ToolService } from './../tool.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ToolDialogAddComponent } from '../tool-dialog-add/tool-dialog-add.component';
 
 @Component({
@@ -13,30 +13,37 @@ import { ToolDialogAddComponent } from '../tool-dialog-add/tool-dialog-add.compo
 })
 export class ToolListComponent implements OnInit {
 
-  private _dialogRemoveStructure: any;
+  private _projectStructure: any;
   public tools : Tool[] = [];
   public tag: string = null;
   public animal: string;
   public name: string;
+  public filter: FormGroup;
+  public checked: boolean = true;
 
   constructor(
     private toolService: ToolService,
     public dialog: MatDialog,
+    public builder: FormBuilder
   ) { }
 
   ngOnInit() {
 
-    this.dialogRemove = {
+    this.projectStructure = {
        title: 'VUTTR',
        subtitle: 'Very Useful Tools to Remember',
        checkbox: 'search in tags only!'
     }
     
-    this.findTools();
+    this.findTools("");
+
+    this.filter = this.builder.group({
+      search: [null]
+    })
   }
   
-  findTools(){
-    this.toolService.findToolByTag("").subscribe(response=>{
+  findTools(tag: string){
+    this.toolService.findToolByTag(tag).subscribe(response=>{
       this.tools = response;
     }) 
   }
@@ -54,11 +61,31 @@ export class ToolListComponent implements OnInit {
       });
   }
 
-  public get dialogRemove(): any {
-    return this._dialogRemoveStructure;
+  search(data: FormGroup): any {
+    if(this.checked){
+      this.findTools(data.value.search);
+    }else{
+      this.tools = [];
+      this.filterSearch(data.value.search);
+    }
+  }
+  
+  reset(){
+    (document.getElementById('search') as HTMLInputElement).value = null
+    this.findTools("");
   }
 
-  public set dialogRemove(value: any) {
-    this._dialogRemoveStructure = value;
+  filterSearch(data: string){
+    this.toolService.findToolByTitleLinkDescriptionTag(data).subscribe(response=>{
+      this.tools = response;
+    }) 
+  }
+
+  public get projectStructure(): any {
+    return this._projectStructure;
+  }
+
+  public set projectStructure(value: any) {
+    this._projectStructure = value;
   }
 }
