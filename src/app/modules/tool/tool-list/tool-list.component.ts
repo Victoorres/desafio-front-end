@@ -6,14 +6,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToolDialogAddComponent } from '../tool-dialog-add/tool-dialog-add.component';
 import { fromEvent } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tool-list',
   templateUrl: './tool-list.component.html',
   styleUrls: ['./tool-list.component.css']
 })
-
 
 export class ToolListComponent implements OnInit {
 
