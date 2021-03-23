@@ -2,15 +2,19 @@ import { ToolDialogRemoveComponent } from './../tool-dialog-remove/tool-dialog-r
 import { MatDialog } from '@angular/material/dialog';
 import { Tool } from './../../../class/tool';
 import { ToolService } from './../tool.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToolDialogAddComponent } from '../tool-dialog-add/tool-dialog-add.component';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tool-list',
   templateUrl: './tool-list.component.html',
   styleUrls: ['./tool-list.component.css']
 })
+
+
 export class ToolListComponent implements OnInit {
 
   private _projectStructure: any;
@@ -21,6 +25,9 @@ export class ToolListComponent implements OnInit {
   public filter: FormGroup;
   public checked: boolean = true;
 
+  @ViewChild('search', { static: false })
+  private searchInput: ElementRef
+
   constructor(
     private toolService: ToolService,
     public dialog: MatDialog,
@@ -28,6 +35,14 @@ export class ToolListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    setTimeout(() => {
+      fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
+        map((event: any) => event.target.value),
+        debounceTime(300)
+      ).subscribe((value: string) => this.search(value)
+      )
+    }, 500);
 
     this.projectStructure = {
       title: 'VUTTR',
@@ -61,12 +76,12 @@ export class ToolListComponent implements OnInit {
     });
   }
 
-  search(data: FormGroup): any {
+  search(data: any): any {
     if (this.checked) {
-      this.findTools(data.value.search);
+      this.findTools(data);
     } else {
       this.tools = [];
-      this.filterSearch(data.value.search);
+      this.filterSearch(data);
     }
   }
 
