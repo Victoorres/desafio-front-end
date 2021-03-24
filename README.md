@@ -1,27 +1,17 @@
-# DesafioFrontEnd
+# VUTTR - Very Usefuls Tools To Remember
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+## Objetivo
 
-## Development server
+Construir um front-end para a aplicação VUTTR (Very Useful Tools to Remember). A aplicação é um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags. Utilize um repositório Git (público, de preferência) para versionamento e disponibilização do código.
+O front-end deve ser construído utilizando o framework JavaScript Angular ou React. Apesar disso, framework mais comum por aqui na Kingspan Isoeste Angular, seguida por React.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Requisitos
 
-## Code scaffolding
+Node - instalar o node no site https://nodejs.org/en/download/
+Angular - instalar o angular com o comando npm install -g @angular/cli no terminal(cmd)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Iniciar projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Instalar as dependências com o comando npm install.
+Inicie o projeto com comando npm start ou npm run start.
