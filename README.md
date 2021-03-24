@@ -14,8 +14,8 @@ https://github.com/Victoorres/desafio-front-end
 
 
 ## Iniciar projeto
-Instalar as dependências com o comando npm install.
-Inicie o projeto com comando npm start ou npm run start.
+Instalar as dependências com o comando *npm install*.
+Inicie o projeto com comando *npm start* ou *npm run start*.
 
 
 ## Deploy in netlify
