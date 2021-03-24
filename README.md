@@ -2,8 +2,11 @@
 
 ## Objetivo
 
-Construir um front-end para a aplicação VUTTR (Very Useful Tools to Remember). A aplicação é um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags. Utilize um repositório Git (público, de preferência) para versionamento e disponibilização do código.
-O front-end deve ser construído utilizando o framework JavaScript Angular ou React. Apesar disso, framework mais comum por aqui na Kingspan Isoeste Angular, seguida por React.
+Construir um front-end para a aplicação VUTTR (Very Useful Tools to Remember). A aplicação é um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags.
+
+## Repositório
+
+https://github.com/Victoorres/desafio-front-end
 
 ## Requisitos
 
