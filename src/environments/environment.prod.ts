@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   api: {
-    url: 'http://localhost:3000',
+    url: 'http://64.225.9.236:3001',
   },
 };
