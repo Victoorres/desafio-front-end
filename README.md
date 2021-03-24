@@ -7,8 +7,8 @@ O front-end deve ser construído utilizando o framework JavaScript Angular ou Re
 
 ## Requisitos
 
-Node - instalar o node no site https://nodejs.org/en/download/
-Angular - instalar o angular com o comando npm install -g @angular/cli no terminal(cmd)
+* Node - instalar o node no site https://nodejs.org/en/download/
+* Angular - instalar o angular com o comando *npm install -g @angular/cli* no terminal(cmd)
 
 
 ## Iniciar projeto
